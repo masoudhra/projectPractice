@@ -31,31 +31,25 @@
 // export default ProductContextProvider;
 
 import React, { useState, useEffect, createContext } from 'react';
-import { getProducts } from '../services/api';
-
-
-
+import { getProducts } from '../services/api'
 
 const ProductContextProvider = (props) => {
 
     const [products, setProducts] = useState ([]);
 
-    const ProductsContext = createContext()
+    const Productsontext = createContext()
 
-    useEffect ( () => {
-
+    useEffect(() => {
         const fetchAPI = async() => {
-           setProducts (await getProducts())
-            
+            setProducts (await getProducts())
         }
-        fetchAPI();
-
+        fetchAPI()
     },[])
 
-
     return (
-        <ProductContextProvider value={products}>
+        <ProductContextProvider>
             {props.children}
+
         </ProductContextProvider>
     );
 };
