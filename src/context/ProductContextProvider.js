@@ -1,63 +1,28 @@
 import React, { useState, useEffect, createContext } from 'react';
 
-//API
+// API
 import { getProducts } from '../services/api';
-
 
 export const ProductsContext = createContext();
 
-const ProductContextProvider = (children) => {
+const ProductContextProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-
-        const fetchAPI = async() =>{
+        const fetchAPI = async () => {
             setProducts(await getProducts());
         }
-        fetchAPI();
 
-    },[])
+        fetchAPI();
+    }, []);
 
 
     return (
-       <ProductContextProvider value={products}>
+        <ProductsContext.Provider value={products}>
             {children}
-
-       </ProductContextProvider>
+        </ProductsContext.Provider>
     );
 };
 
 export default ProductContextProvider;
-
-// import React, { useState, useEffect, createContext } from 'react';
-// import { getProducts } from '../services/api';
-
-
-
-// const ProductsContext = createContext();
-
-
-
-
-// const ProductContextProvider = (children) => {
-
-// const [products, setProducts] = useState ([]);
-
-// useEffect (() => {
-
-//     const fetchAPI = async() => {
-//         setProducts (await getProducts())
-//     }
-//     fetchAPI();
-
-// },[])
-
-//     return (
-//         <ProductContextProvider value={products}>
-//             {children}
-//         </ProductContextProvider>
-//     );
-// };
-
-// export default ProductContextProvider;
